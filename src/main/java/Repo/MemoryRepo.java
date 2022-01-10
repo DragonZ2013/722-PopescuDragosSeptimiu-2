@@ -22,6 +22,11 @@ public class MemoryRepo {
     }
 
 
+    /**
+     * adds a product object to productList
+     * @param product
+     * @throws ExistingIdException
+     */
     public void create(Product product) throws ExistingIdException {
         for(Product existing:productList)
             if(existing.getId()==product.getId())
@@ -29,6 +34,10 @@ public class MemoryRepo {
         productList.add(product);
     }
 
+    /**
+     * modifies a product object from productList with the same object id
+     * @param product
+     */
     public void update(Product product){
         Product productToUpdate = this.productList.stream()
                 .filter(currentProduct -> currentProduct.getId() == product.getId())
@@ -40,6 +49,10 @@ public class MemoryRepo {
 
     }
 
+    /**
+     * removes a product object from, productList with the given Id if it exists
+     * @param id
+     */
     public void delete(int id){
         Product productToDelete = this.productList.stream()
                 .filter(currentProduct -> currentProduct.getId() == id)
@@ -48,6 +61,10 @@ public class MemoryRepo {
         this.productList.remove(productToDelete);
     }
 
+    /**
+     * returns the entire productList
+     * @return
+     */
     public List<Product> getAll(){
         return productList;
     }

@@ -5,11 +5,7 @@ import Models.Product;
 import Repo.MemoryRepo;
 
 public class Controller {
-    /**
-     * Crud operations
-     * Current stock
-     *
-     */
+
     private MemoryRepo memoryRepo;
 
     public Controller(MemoryRepo memoryRepo) {
@@ -24,16 +20,35 @@ public class Controller {
         this.memoryRepo = memoryRepo;
     }
 
+    /**
+     * creates a product object for memoryRepo
+     * @param id
+     * @param price
+     * @param sku
+     * @param stock
+     * @throws ExistingIdException
+     */
     public void createProduct(int id,double price, String sku, int stock) throws ExistingIdException {
         Product product = new Product(id,price,sku,stock);
         memoryRepo.create(product);
 
     }
 
+    /**
+     * deletes a product object from memoryRepo by given id
+     * @param id
+     */
     public void deleteProduct(int id){
         memoryRepo.delete(id);
     }
 
+    /**
+     * updates a product object from memoryRepo with the same object id
+     * @param id
+     * @param price
+     * @param sku
+     * @param stock
+     */
     public void updateProduct(int id,double price, String sku, int stock){
         Product product = new Product(id,price,sku,stock);
         memoryRepo.update(product);
